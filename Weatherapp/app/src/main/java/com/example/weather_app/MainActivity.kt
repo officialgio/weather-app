@@ -67,6 +67,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    fun WeatherCard(weather: CurrentWeather) {
+        // TODO: Card implementation
+    }
+
     private fun fetchCurrentWeather(location: String, onResult: (CurrentWeather?, String?) -> Unit) {
         weatherClient.fetchCurrentWeather(location) { weather, error ->
             if (weather != null) {
@@ -78,15 +83,17 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
 
-    @Composable
-    fun WeatherInfo(weather: CurrentWeather) {
-        Column {
-            Text(text = "Location: ${weather.location.name}", style = MaterialTheme.typography.titleLarge)
-            Text(text = "Temperature: ${weather.current.temp_c}°C", style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Condition: ${weather.current.condition.text}", style = MaterialTheme.typography.bodyMedium)
 
-            // TODO: You can add more fields as needed
-        }
+
+@Composable
+fun WeatherInfo(weather: CurrentWeather) {
+    Column {
+        Text(text = "Location: ${weather.location.name}", style = MaterialTheme.typography.titleLarge)
+        Text(text = "Temperature: ${weather.current.temp_c}°C", style = MaterialTheme.typography.bodyMedium)
+        Text(text = "Condition: ${weather.current.condition.text}", style = MaterialTheme.typography.bodyMedium)
+
+        // TODO: You can add more fields as needed
     }
 }
